@@ -1,11 +1,14 @@
 package net.weg.wdm.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reserva {
 
     @Id
@@ -13,6 +16,8 @@ public class Reserva {
     private Long numero;
     private Usuario usuario;
     private List<Dispositivo> dispositivos;
+
+    @Column(nullable = false)
     private StatusReserva status;
     private Ambiente ambiente;
     private Turma turma;
