@@ -5,16 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Turma {
+public class SolicitacaoReserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, length = 20, nullable = false)
-    private String nome;
+
+    @OneToMany(mappedBy = "solicitacao", cascade = CascadeType.ALL)
+    private List<Reserva> reservas;
 
 }

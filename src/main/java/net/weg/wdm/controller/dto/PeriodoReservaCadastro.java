@@ -1,0 +1,17 @@
+package net.weg.wdm.controller.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import net.weg.wdm.entity.DiaSemana;
+
+@AllArgsConstructor
+@Data
+public class PeriodoReservaCadastro {
+
+    private Long idAmbiente;
+
+    private Long idPeriodo;
+
+    private DiaSemana diaSemana;
+
+}

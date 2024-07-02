@@ -5,16 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalTime;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Turma {
+public class Periodo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, length = 20, nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String nome;
+
+    @Column(nullable = false)
+    private LocalTime inicio;
+
+    @Column(nullable = false)
+    private LocalTime fim;
 
 }

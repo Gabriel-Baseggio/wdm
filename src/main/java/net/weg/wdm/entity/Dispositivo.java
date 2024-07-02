@@ -2,6 +2,7 @@ package net.weg.wdm.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -9,11 +10,13 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Dispositivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private Long numero;
 
@@ -23,8 +26,14 @@ public class Dispositivo {
     @Column(nullable = false, length = 50)
     private String modelo;
 
+    @ManyToOne
+    @Column(nullable = false)
     private TipoDispositivo tipo;
-    private List<Reserva> reservas;
+
+    @OneToMany(mappedBy = "dispositivo")
+    private List<DispositivoReservado> reservasDoDispositivo;
+
+    @OneToMany(mappedBy = "dispositivo")
     private List<Manutencao> manutencoes;
 
     private String descricao;
