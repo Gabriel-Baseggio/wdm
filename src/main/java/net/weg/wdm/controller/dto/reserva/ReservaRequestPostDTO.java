@@ -1,26 +1,18 @@
-package net.weg.wdm.controller.dto;
+package net.weg.wdm.controller.dto.reserva;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import net.weg.wdm.entity.DiaSemana;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
 @Data
-public class ReservaCadastro {
-
+public class ReservaRequestPostDTO {
     private Long idUsuario;
-
     private Long idTurma;
-
     private List<Long> idDispositivos;
-
-    private List<PeriodoReservaCadastro> periodos;
-
+    private List<PeriodoReservaRequestPostDTO> periodos;
     private LocalDate inicio;
-
     private LocalDate fim;
-
 }
