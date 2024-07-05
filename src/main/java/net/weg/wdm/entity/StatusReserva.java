@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public enum StatusReserva {
     EM_ABERTO("Em Aberto"),
-    AGUADANDO_RETIRADA("Aguardando Retirada"),
+    AGUARDANDO_RETIRADA("Aguardando Retirada"),
     AGUARDANDO_DEVOLUCAO("Aguardando Devolução"),
     ATRASADO("Atrasado"),
     CONCLUIDA("Concluída"),

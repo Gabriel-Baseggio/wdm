@@ -27,7 +27,7 @@ public class Dispositivo {
     private String modelo;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private TipoDispositivo tipo;
 
     @OneToMany(mappedBy = "dispositivo")

@@ -35,7 +35,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "usuario")
     private List<GrupoDispositivo> gruposDispositivos;
 
 }

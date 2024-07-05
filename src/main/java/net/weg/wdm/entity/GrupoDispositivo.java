@@ -23,4 +23,8 @@ public class GrupoDispositivo {
     @ManyToMany
     private List<Dispositivo> dispositivos;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Usuario usuario;
+
 }

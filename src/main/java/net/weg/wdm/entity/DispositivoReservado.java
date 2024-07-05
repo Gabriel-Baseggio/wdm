@@ -18,11 +18,11 @@ public class DispositivoReservado {
     private Long id;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Dispositivo dispositivo;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Reserva reserva;
 
     private LocalDateTime retirada;

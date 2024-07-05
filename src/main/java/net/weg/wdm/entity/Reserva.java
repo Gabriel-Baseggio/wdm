@@ -19,11 +19,11 @@ public class Reserva {
     private Long numero;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Usuario solicitante;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private SolicitacaoReserva solicitacao;
 
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
@@ -34,16 +34,18 @@ public class Reserva {
     private StatusReserva status;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Periodo periodo;
 
     @Column(nullable = false)
     private LocalDate dia;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Ambiente ambiente;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Turma turma;
 
     private String comentario;
