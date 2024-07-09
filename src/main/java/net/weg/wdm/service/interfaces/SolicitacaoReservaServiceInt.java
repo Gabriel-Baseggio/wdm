@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface SolicitacaoReservaServiceInt {
 
-    SolicitacaoReserva criarReservas(ReservaRequestPostDTO reservaDTO);
+    SolicitacaoReserva criarSolicitacaoReserva(ReservaRequestPostDTO reservaDTO);
 
 }

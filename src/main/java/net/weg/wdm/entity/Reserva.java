@@ -31,7 +31,7 @@ public class Reserva {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private StatusReserva status;
+    private StatusReserva status = StatusReserva.EM_ABERTO;
 
     @ManyToOne
     @JoinColumn(nullable = false)

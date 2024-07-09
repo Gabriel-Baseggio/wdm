@@ -6,13 +6,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum DiaSemana {
 
-    DOMINGO("Domingo"),
     SEGUNDA("Segunda-feira"),
     TERCA("Terça-feira"),
     QUARTA("Quarta-feira"),
     QUINTA("Quinta-feira"),
     SEXTA("Sexta-feira"),
-    SABADO("Sábado");
+    SABADO("Sábado"),
+    DOMINGO("Domingo");
 
     private final String NOME;
 
