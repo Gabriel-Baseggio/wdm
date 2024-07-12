@@ -25,13 +25,14 @@ public class Reserva {
     @ToString.Exclude
     private Usuario solicitante;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    @ToString.Exclude
-    @JsonIgnore
-    private SolicitacaoReserva solicitacao;
+//    @ManyToOne
+//    @JoinColumn(nullable = false)
+//    @ToString.Exclude
+//    @JsonIgnore
+//    private SolicitacaoReserva solicitacao;
 
-    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<DispositivoReservado> dispositivosReservados;
 
     @Column(nullable = false)

@@ -22,12 +22,12 @@ public class DispositivoReservado {
     @JoinColumn(nullable = false)
     private Dispositivo dispositivo;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    @NonNull
-    @ToString.Exclude
-    @JsonIgnore
-    private Reserva reserva;
+//    @ManyToOne
+//    @JoinColumn(nullable = false)
+//    @NonNull
+//    @ToString.Exclude
+//    @JsonIgnore
+//    private Reserva reserva;
 
     private LocalDateTime retirada;
 
