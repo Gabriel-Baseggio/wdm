@@ -23,8 +23,6 @@ public class DispositivoReservado {
     private Dispositivo dispositivo;
 
 //    @ManyToOne
-//    @JoinColumn(nullable = false)
-//    @NonNull
 //    @ToString.Exclude
 //    @JsonIgnore
 //    private Reserva reserva;

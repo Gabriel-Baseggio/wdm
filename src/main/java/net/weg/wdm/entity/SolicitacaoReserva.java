@@ -19,6 +19,7 @@ public class SolicitacaoReserva {
 
 //    @OneToMany(mappedBy = "solicitacao", cascade = CascadeType.ALL)
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "solicitacao_id")
     private List<Reserva> reservas;
 
 }
