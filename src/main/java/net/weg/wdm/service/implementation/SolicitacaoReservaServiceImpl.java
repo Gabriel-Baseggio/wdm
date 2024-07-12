@@ -5,6 +5,7 @@ import net.weg.wdm.controller.dto.reserva.PeriodoReservaRequestPostDTO;
 import net.weg.wdm.controller.dto.reserva.ReservaRequestPostDTO;
 import net.weg.wdm.entity.*;
 import net.weg.wdm.repository.SolicitacaoReservaRepository;
+import net.weg.wdm.repository.UsuarioRepository;
 import net.weg.wdm.service.interfaces.SolicitacaoReservaServiceInt;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceInt {
 
     private final SolicitacaoReservaRepository repository;
+    private final UsuarioRepository usuarioRepository;
     private final DispositivoServiceImpl dispositivoService;
 
     @Override
@@ -51,8 +53,8 @@ public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceI
 
     private Reserva criarReserva(ReservaRequestPostDTO reservaDTO, PeriodoReservaRequestPostDTO periodoDTO, LocalDate data, TipoDispositivo tipo, Map<TipoDispositivo, List<Dispositivo>> dispositivos) {
         Reserva reserva = new Reserva();
-        reserva.setSolicitante(new Usuario(reservaDTO.getIdUsuario()));
-        reserva.setDia(data);
+        reserva.setSolicitante(usuarioRepository.findById(reservaDTO.getIdUsuario()).orElse(null));
+//        reserva.setSolicitante(new Usuario(reservaDTO.getIdUsuario()));
         reserva.setPeriodo(new Periodo(periodoDTO.getIdPeriodo()));
         reserva.setAmbiente(new Ambiente(periodoDTO.getIdAmbiente()));
         reserva.setTurma(new Turma(reservaDTO.getIdTurma()));

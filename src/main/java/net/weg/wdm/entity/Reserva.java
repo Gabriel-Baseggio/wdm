@@ -22,7 +22,6 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    @ToString.Exclude
     private Usuario solicitante;
 
 //    @ManyToOne
