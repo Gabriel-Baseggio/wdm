@@ -1,9 +1,11 @@
 package net.weg.wdm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,10 +22,13 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Usuario solicitante;
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private SolicitacaoReserva solicitacao;
 
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
