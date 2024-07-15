@@ -31,7 +31,7 @@ public class Reserva {
 
 //    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reserva_id")
+    @JoinColumn(name = "id_reserva")
     private List<DispositivoReservado> dispositivosReservados;
 
     @Column(nullable = false)
