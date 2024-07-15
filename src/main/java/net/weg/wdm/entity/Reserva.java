@@ -1,11 +1,9 @@
 package net.weg.wdm.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,14 +22,8 @@ public class Reserva {
     @JoinColumn(nullable = false)
     private Usuario solicitante;
 
-//    @ManyToOne
-//    @ToString.Exclude
-//    @JsonIgnore
-//    private SolicitacaoReserva solicitacao;
-
-//    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_reserva")
+    @JoinColumn(name = "reserva_id", nullable = false)
     private List<DispositivoReservado> dispositivosReservados;
 
     @Column(nullable = false)

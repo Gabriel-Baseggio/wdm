@@ -2,11 +2,12 @@ package net.weg.wdm.service.implementation;
 
 import lombok.AllArgsConstructor;
 import net.weg.wdm.controller.dto.reserva.PeriodoReservaRequestPostDTO;
-import net.weg.wdm.controller.dto.reserva.ReservaRequestPostDTO;
+import net.weg.wdm.controller.dto.reserva.SolicitacaoReservaRequestPostDTO;
 import net.weg.wdm.entity.*;
 import net.weg.wdm.repository.SolicitacaoReservaRepository;
-import net.weg.wdm.repository.UsuarioRepository;
 import net.weg.wdm.service.interfaces.SolicitacaoReservaServiceInt;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,19 +21,34 @@ import java.util.Set;
 public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceInt {
 
     private final SolicitacaoReservaRepository repository;
-    private final UsuarioRepository usuarioRepository;
     private final DispositivoServiceImpl dispositivoService;
 
     @Override
-    public SolicitacaoReserva criarSolicitacaoReserva(ReservaRequestPostDTO reservaDTO) {
+    public List<SolicitacaoReserva> buscarTodasSolicitacoes() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Page<SolicitacaoReserva> buscarTodasSolicitacoesPage(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    @Override
+    public SolicitacaoReserva buscarSolicitacao(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public SolicitacaoReserva criarSolicitacaoReserva(SolicitacaoReservaRequestPostDTO reservaDTO) {
         SolicitacaoReserva solicitacaoReserva = new SolicitacaoReserva();
 
         Map<TipoDispositivo, List<Dispositivo>> dispositivos = dispositivoService.
                 buscarDispositivosPorIdSeparadosPorTipo(reservaDTO.getIdDispositivos());
 
-        List<Reserva> reservas = new ArrayList<>();
-
         Set<TipoDispositivo> tipos = dispositivos.keySet();
+
+        List<Reserva> reservas = new ArrayList<>();
+        solicitacaoReserva.setReservas(reservas);
 
         LocalDate data = reservaDTO.getInicio();
         do {
@@ -46,15 +62,13 @@ public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceI
             data = data.plusDays(1);
         } while (data.isBefore(reservaDTO.getFim().plusDays(1)));
 
-        solicitacaoReserva.setReservas(reservas);
-
         return repository.save(solicitacaoReserva);
     }
 
-    private Reserva criarReserva(ReservaRequestPostDTO reservaDTO, PeriodoReservaRequestPostDTO periodoDTO, LocalDate data, TipoDispositivo tipo, Map<TipoDispositivo, List<Dispositivo>> dispositivos) {
+    private Reserva criarReserva(SolicitacaoReservaRequestPostDTO reservaDTO, PeriodoReservaRequestPostDTO periodoDTO, LocalDate data, TipoDispositivo tipo, Map<TipoDispositivo, List<Dispositivo>> dispositivos) {
         Reserva reserva = new Reserva();
-        reserva.setSolicitante(usuarioRepository.findById(reservaDTO.getIdUsuario()).orElse(null));
-//        reserva.setSolicitante(new Usuario(reservaDTO.getIdUsuario()));
+        reserva.setDia(data);
+        reserva.setSolicitante(new Usuario(reservaDTO.getIdUsuario()));
         reserva.setPeriodo(new Periodo(periodoDTO.getIdPeriodo()));
         reserva.setAmbiente(new Ambiente(periodoDTO.getIdAmbiente()));
         reserva.setTurma(new Turma(reservaDTO.getIdTurma()));
