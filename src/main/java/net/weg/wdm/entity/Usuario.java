@@ -29,9 +29,8 @@ public class Usuario {
 
     private Boolean habilitado;
 
-    @OneToMany(mappedBy = "solicitante")
-    @JsonIgnore
-    private List<Reserva> reservas;
+//    @OneToMany(mappedBy = "solicitante")
+//    private List<SolicitacaoReserva> solicitacoes;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
