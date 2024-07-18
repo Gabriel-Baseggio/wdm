@@ -23,15 +23,12 @@ public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceI
 
     @Override
     public List<SolicitacaoReservaResponseDTO> buscarTodasSolicitacoes() {
-        List<SolicitacaoReserva> solicitacoes = repository.findAll();
-        List<SolicitacaoReservaResponseDTO> response = solicitacoes.stream().map(SolicitacaoReserva::paraDTO).toList();
-        return response;
+        return repository.findAll().stream().map(SolicitacaoReserva::paraDTO).toList();
     }
 
     @Override
     public Page<SolicitacaoResponseDTO> buscarTodasSolicitacoesPage(Pageable pageable) {
-        Page<SolicitacaoReserva> solicitacoes = repository.findAll(pageable);
-        return solicitacoes.map(SolicitacaoReserva::paraOutraDTO);
+        return repository.findAll(pageable).map(SolicitacaoReserva::paraOutraDTO);
     }
 
     @Override
