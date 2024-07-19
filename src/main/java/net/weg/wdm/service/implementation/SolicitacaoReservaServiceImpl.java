@@ -42,9 +42,15 @@ public class SolicitacaoReservaServiceImpl implements SolicitacaoReservaServiceI
         Map<TipoDispositivo, List<Dispositivo>> dispositivos = dispositivoService.
                 buscarDispositivosPorIdSeparadosPorTipo(reservaDTO.idDispositivos());
 
-        SolicitacaoReserva solicitacaoReserva = new SolicitacaoReserva(reservaDTO, dispositivos);
+        SolicitacaoReserva solicitacaoReserva = null;
+        try {
+            solicitacaoReserva = new SolicitacaoReserva(reservaDTO, dispositivos);
+            return repository.save(solicitacaoReserva).paraDTO();
+        } catch (Exception e) {
+            e.();
+            return null;
+        }
 
-        return repository.save(solicitacaoReserva).paraDTO();
     }
 
 }

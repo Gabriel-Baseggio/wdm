@@ -40,7 +40,7 @@ public class SolicitacaoReserva {
 
     private LocalDate fim;
 
-    public SolicitacaoReserva(SolicitacaoReservaRequestPostDTO dto, Map<TipoDispositivo, List<Dispositivo>> dispositivos ) {
+    public SolicitacaoReserva(SolicitacaoReservaRequestPostDTO dto, Map<TipoDispositivo, List<Dispositivo>> dispositivos ) throws Exception {
         Set<TipoDispositivo> tipos = dispositivos.keySet();
 
         this.solicitante = new Usuario(dto.idUsuario());
@@ -48,6 +48,10 @@ public class SolicitacaoReserva {
         this.turma = new Turma(dto.idTurma());
         this.inicio = dto.inicio();
         this.fim = dto.fim();
+
+        if (dto.inicio().isBefore(LocalDate.now())) {
+            throw new Exception("Não é possível reservar para o passado!");
+        }
 
         LocalDate data = dto.inicio();
         do {
